@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: portfolio-manager-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt && python seed_data.py && python seed_documents.py
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.11
