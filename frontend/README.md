@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend — Next.js Portfolio Manager
 
-## Getting Started
+A modern, dark-themed dashboard for the Agentic AI Portfolio Manager. Built with **Next.js 16**, **React 19**, and **Tailwind CSS 4**.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **UI:** React 19, Tailwind CSS 4
+- **Charts:** Recharts
+- **API Client:** Typed fetch wrapper with environment-aware base URL
+
+## Features
+
+- **Dashboard** — Total AUM, client overview, P&L at a glance
+- **Client Portfolios** — Detailed holdings tables with XIRR, CAGR metrics
+- **Charts** — Asset allocation (pie), sector allocation (pie), performance
+- **AI Chat** — Floating chat widget connected to the backend AI agent
+- **Dark Theme** — Premium glassmorphism UI with smooth animations
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Dashboard — AUM overview, all clients |
+| `/clients` | Client list |
+| `/clients/[id]` | Client detail — portfolios, holdings, charts |
+
+## Local Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The frontend expects the backend at `http://localhost:8000/api` by default. Override with the `NEXT_PUBLIC_API_URL` environment variable.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deploy to Vercel
 
-## Learn More
+1. Import the GitHub repo on [vercel.com](https://vercel.com)
+2. Set **Root Directory** to `frontend`
+3. Add environment variable:
+   - `NEXT_PUBLIC_API_URL` = `https://your-render-backend.onrender.com/api`
+4. Deploy
 
-To learn more about Next.js, take a look at the following resources:
+## Components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Component | Description |
+|---|---|
+| `AIChat.tsx` | Floating AI chat widget with message history |
+| `AllocationChart.tsx` | Recharts pie chart for asset/sector allocation |
+| `HoldingsTable.tsx` | Sortable table for portfolio holdings |
+| `MetricCard.tsx` | Stat card with label, value, and change indicator |
+| `Sidebar.tsx` | Navigation sidebar with Dashboard/Clients links |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Variable | Default | Description |
+|---|---|---|
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8000/api` | Backend API base URL |
