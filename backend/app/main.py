@@ -10,8 +10,11 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Build CORS origins: always allow localhost, plus deployed frontend URL if set
-allowed_origins = ["http://localhost:3000"]
+# Build CORS origins: localhost + deployed frontend URLs
+allowed_origins = [
+    "http://localhost:3000",
+    "https://portfolio-manager-pro.vercel.app",
+]
 frontend_url = os.getenv("FRONTEND_URL")
 if frontend_url:
     allowed_origins.append(frontend_url)
